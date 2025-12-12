@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import librosa
 import numpy as np
 import tensorflow as tf
@@ -6,6 +7,15 @@ from .feature_extraction import extract_features
 import io
 
 app = FastAPI()
+
+# Enable CORS for frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins (change in production)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load the model (ensure it's in the 'model/' folder)
 try:

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detector - Audio Classifier</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🎵 Emotion Detector</h1>
+            <p class="subtitle">Upload a .wav audio file to detect emotion</p>
+            
+            <div class="upload-section">
+                <div class="file-input-wrapper">
+                    <input type="file" id="fileInput" accept=".wav" />
+                    <label for="fileInput" class="file-label">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span>Choose .wav file</span>
+                    </label>
+                </div>
+                <button id="uploadBtn" class="btn btn-primary" disabled>Detect Emotion</button>
+            </div>
+
+            <div id="fileName" class="file-name"></div>
+
+            <!-- Loading spinner -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Analyzing audio...</p>
+            </div>
+
+            <!-- Result section -->
+            <div id="result" class="result hidden">
+                <h2>Emotion Detection Result</h2>
+                <div class="emotion-display">
+                    <div class="emotion-name" id="emotionName"></div>
+                    <div class="emotion-confidence" id="emotionConfidence"></div>
+                </div>
+                <button class="btn btn-secondary" onclick="resetForm()">Analyze Another</button>
+            </div>
+
+            <!-- Error section -->
+            <div id="error" class="error hidden"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
