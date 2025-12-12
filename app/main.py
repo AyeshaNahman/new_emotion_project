@@ -35,13 +35,17 @@ async def predict(audio: UploadFile = File(...)):
     print(f"Received audio file of size: {len(audio_data)} bytes")
 
     try:
+        # Fail fast if model isn't loaded yet (e.g., before you add my_model.h5)
+        if model is None:
+            raise HTTPException(status_code=503, detail="Model not loaded. Add model/my_model.h5 and restart.")
+
         # Extract features from the uploaded audio file
         features = extract_features(audio_data)
-        print("Extracted features:", features)  # Debugging: log extracted features
+        print("Extracted features:", features)
 
         # Make a prediction using the model
         prediction = model.predict(np.expand_dims(features, axis=0))
-        print("Prediction:", prediction)  # Debugging: log prediction
+        print("Prediction:", prediction)
 
         return {"prediction": prediction.tolist()}
 
