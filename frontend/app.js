@@ -5,7 +5,8 @@ const loading = document.getElementById('loading');
 const result = document.getElementById('result');
 const error = document.getElementById('error');
 
-const API_URL = 'https://web-production-a036.up.railway.app';
+// Use same origin as the served frontend (works locally and in production)
+const API_URL = window.location.origin;
 
 // Enable upload button when file is selected
 fileInput.addEventListener('change', (e) => {
