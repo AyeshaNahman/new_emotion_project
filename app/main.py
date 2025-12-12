@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import librosa
 import numpy as np
 import tensorflow as tf
@@ -18,8 +19,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve the frontend (single URL for both UI and API)
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+# Serve static frontend assets under /static to avoid shadowing API routes
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
+# Serve the main page at root
+@app.get("/")
+def root():
+    return FileResponse("frontend/index.html")
 
 # Load the model (ensure it's in the 'model/' folder)
 try:
