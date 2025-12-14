@@ -72,9 +72,10 @@ function displayResult(prediction) {
     ];
 
     // Get the emotion with highest confidence
-    const maxIdx = prediction.indexOf(Math.max(...prediction));
+    const maxValue = Math.max(...prediction);
+    const maxIdx = prediction.findIndex(val => val === maxValue);
     const emotion = emotions[maxIdx] || 'Unknown';
-    const confidence = (Math.max(...prediction) * 100).toFixed(1);
+    const confidence = (maxValue * 100).toFixed(1);
 
     document.getElementById('emotionName').textContent = emotion;
     document.getElementById('emotionConfidence').textContent = `Confidence: ${confidence}%`;
