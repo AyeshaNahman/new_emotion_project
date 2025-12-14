@@ -43,9 +43,9 @@ MANIFEST
 htmlcov/
 .tox/
 
-# Models and data
-model/
-models/
+# Models and data (commented out to deploy model)
+# model/
+# models/
 data/
 *.h5
 *.pkl
