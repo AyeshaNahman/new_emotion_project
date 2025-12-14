@@ -73,13 +73,18 @@ function displayResult(prediction) {
         'Calm'
     ];
 
+    // Normalize prediction: API returns [[...]] so unwrap and coerce to numbers
+    const probs = Array.isArray(prediction[0]) ? prediction[0] : prediction;
+    const numeric = probs.map(Number);
+
     // Get the emotion with highest confidence
     console.log('Raw prediction:', prediction);
-    console.log('Prediction type:', typeof prediction);
-    console.log('Is array?:', Array.isArray(prediction));
-    
-    const maxValue = Math.max(...prediction);
-    const maxIdx = prediction.findIndex(val => val === maxValue);
+    console.log('Unwrapped numeric:', numeric);
+    console.log('Prediction type:', typeof numeric);
+    console.log('Is array?:', Array.isArray(numeric));
+
+    const maxValue = Math.max(...numeric);
+    const maxIdx = numeric.findIndex(val => val === maxValue);
     const emotion = emotions[maxIdx] || 'Unknown';
     const confidence = (maxValue * 100).toFixed(1);
     
