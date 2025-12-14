@@ -14,14 +14,14 @@ A web-based audio emotion classification system using Machine Learning. Upload a
 ## Emotion Classes
 
 The model classifies audio into 8 emotions:
-1. Angry
-2. Disgust
-3. Fear
-4. Happy
-5. Neutral
-6. Sad
-7. Surprised
-8. Calm
+1. Neutral
+2. Calm
+3. Happy
+4. Sad
+5. Angry
+6. Fearful
+7. Disgusted
+8. Surprised
 
 ## Project Structure
 
