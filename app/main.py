@@ -29,7 +29,7 @@ def root():
 
 # Load the model (ensure it's in the 'model/' folder)
 try:
-    model = tf.keras.models.load_model('model/my_model.h5')
+    model = tf.keras.models.load_model('model/robust_model.keras')
 except Exception as e:
     print(f"Warning: Could not load model: {e}")
     model = None
