@@ -48,6 +48,8 @@ uploadBtn.addEventListener('click', async () => {
         }
 
         const data = await response.json();
+        console.log('API Response:', data);
+        console.log('Prediction array:', data.prediction);
         displayResult(data.prediction);
 
     } catch (err) {
@@ -72,10 +74,19 @@ function displayResult(prediction) {
     ];
 
     // Get the emotion with highest confidence
+    console.log('Raw prediction:', prediction);
+    console.log('Prediction type:', typeof prediction);
+    console.log('Is array?:', Array.isArray(prediction));
+    
     const maxValue = Math.max(...prediction);
     const maxIdx = prediction.findIndex(val => val === maxValue);
     const emotion = emotions[maxIdx] || 'Unknown';
     const confidence = (maxValue * 100).toFixed(1);
+    
+    console.log('Max value:', maxValue);
+    console.log('Max index:', maxIdx);
+    console.log('Emotion:', emotion);
+    console.log('Confidence:', confidence);
 
     document.getElementById('emotionName').textContent = emotion;
     document.getElementById('emotionConfidence').textContent = `Confidence: ${confidence}%`;
